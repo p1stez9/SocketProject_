@@ -1,5 +1,5 @@
 import jwt, { decode } from "jsonwebtoken"
-import User from " ../models/user.model.js" 
+import User from "../models/user.model.js" 
 
 export const protectRoute = async (req,res,next) => {
     try {
@@ -20,7 +20,7 @@ export const protectRoute = async (req,res,next) => {
             })
         }
 
-        const user = await User.findById(decode.userId).select("-password")
+        const user = await User.findById(decoded.userId).select("-password")
 
         if(!user) {
             return res.status(401).json({
